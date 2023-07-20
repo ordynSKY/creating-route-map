@@ -1,0 +1,83 @@
+.modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal__content {
+  /* width: 1000px;
+  height: 334px; */
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 50px;
+  transform: scale(0.5);
+  transition: 0.2s all;
+}
+
+.modal__content.active {
+  transform: scale(1);
+}
+
+.title {
+  font-family: "DniproCity";
+  font-style: normal;
+  font-size: 30px;
+  line-height: 31px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #000000;
+  margin: 40px 88px 50px 88px;
+}
+
+.email,
+.password {
+  font-family: "DniproCity";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #888888;
+  width: 300px;
+  height: 55px;
+  border: 1px solid #000000;
+  border-radius: 59px;
+  margin-right: 10px;
+}
+
+.button__register {
+  font-family: "DniproCity";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  color: #103778;
+  width: 300px;
+  height: 55px;
+  background: #ffffff;
+  border: 2px solid #103778;
+  border-radius: 73px;
+  cursor: pointer;
+}
