@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import IRoute, { TRouteArray } from "../components/Routes/types";
+import IRoute from "../components/Routes/types";
 
 type RoutesState = {
   list: IRoute[];
@@ -23,8 +23,6 @@ const routeSlice = createSlice({
       });
     },
     deleteRoute(state, action) {
-      console.log("state", state);
-      console.log("action", action);
       state.list = state.list.filter((route) => route.id !== action.payload);
     },
   },

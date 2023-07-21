@@ -13,4 +13,13 @@ export interface IRouteArray {
   setRoute: (arg: number | undefined) => void;
 }
 
+export interface IRouteBlock {
+  setActive: (arg: boolean) => void;
+  setRoute: (arg: number | undefined) => void;
+}
+
+export interface IRouteForm {
+  setActive: (arg: boolean) => void;
+}
+
 export type TRouteArray = IRoute[];

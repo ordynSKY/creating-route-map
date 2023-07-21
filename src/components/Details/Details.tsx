@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import IRoute from "../Routes/types";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { deleteRoute } from "../../store/routeSlice";
 
@@ -7,7 +6,6 @@ interface IDetails {
   active: boolean;
   routeId: number | undefined;
   setActive: (arg: boolean) => void;
-  //   deleteRoute: (id: number | undefined) => void;
 }
 
 const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
@@ -19,13 +17,19 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
       return true;
     }
   });
+
   return (
     <>
       {active ? (
         <div
           style={
             active
-              ? { marginLeft: 20, overflowY: "auto", height: 500 }
+              ? {
+                  marginLeft: 20,
+                  overflowY: "auto",
+                  height: 500,
+                  paddingRight: 20,
+                }
               : { display: "none" }
           }
         >
@@ -40,7 +44,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
             <strong>{route?.title}</strong>
             <strong>{route?.length} km</strong>
           </div>
-          <div style={{ fontSize: 15, marginBottom: 20 }}>
+          <div style={{ fontSize: 15, marginBottom: 20, width: 600 }}>
             {route?.description}
           </div>
           <iframe
@@ -58,8 +62,17 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
               marginTop: 20,
             }}
           >
-            <button style={{ marginBottom: 10 }}>Add to favorites</button>
             <button
+              style={{
+                marginBottom: 10,
+                color: "blue",
+                textDecoration: "underline",
+              }}
+            >
+              Add to favorites
+            </button>
+            <button
+              style={{ color: "red", textDecoration: "underline" }}
               onClick={() => (
                 dispatch(deleteRoute(route?.id)), setActive(false)
               )}

@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/button";
 import React, { FC } from "react";
 import { IRouteArray } from "./types";
 
-const RouteItem: FC<IRouteArray> = ({ index, route, setActive, setRoute }) => {
+const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
   return (
     <div
       style={{

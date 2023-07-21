@@ -2,16 +2,10 @@ import { Button } from "@chakra-ui/button";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import { Text } from "@chakra-ui/layout";
-import React, { FC, FormEvent, useState } from "react";
-import IRoute from "./types";
-import { IModal } from "../Modal/types";
+import React, { FC, useState } from "react";
+import IRoute, { IRouteForm } from "./types";
 import { useAppDispatch } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
-
-interface IRouteForm {
-  //   oneNewRoute: (e: IRoute) => void;
-  setActive: (arg: boolean) => void;
-}
 
 const RouteForm: FC<IRouteForm> = ({ setActive }) => {
   const [title, setTitle] = useState<string>("");

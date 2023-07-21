@@ -1,14 +1,8 @@
 import React, { FC } from "react";
-import styles from "./Routes.module.css";
-import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Routes from "./Routes";
-import IRoute, { TRouteArray } from "./types";
-
-interface IRouteBlock {
-  setActive: (arg: boolean) => void;
-  setRoute: (arg: number | undefined) => void;
-}
+import { IRouteBlock } from "./types";
 
 const RouteBlock: FC<IRouteBlock> = ({ setActive, setRoute }) => {
   return (

@@ -1,10 +1,6 @@
 import { FC } from "react";
 import "./Modal.css";
 import { IModal } from "./types";
-import { Input } from "@chakra-ui/input";
-import { Text } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/button";
-import { CheckIcon } from "@chakra-ui/icons";
 import RouteForm from "../Routes/RouteForm";
 
 const Modal: FC<IModal> = ({ active, setActive }) => {
