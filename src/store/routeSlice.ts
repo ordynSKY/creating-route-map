@@ -31,7 +31,6 @@ const routeSlice = createSlice({
       console.log("state", action);
 
       state.searchRoute = action.payload;
-      state.list = state.list.filter((route) => route.title === action.payload);
     },
   },
 });

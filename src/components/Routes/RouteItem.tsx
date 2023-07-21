@@ -4,6 +4,11 @@ import { IRouteArray } from "./types";
 import TruncatedText from "./TruncatedText";
 
 const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
+  const getDetails = () => {
+    setActive(true);
+    setRoute(route.id);
+  };
+
   return (
     <div
       style={{
@@ -35,10 +40,7 @@ const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
       </div>
       <div>
         <strong style={{ marginRight: 10 }}>{route.length} km</strong>
-        <Button
-          colorScheme="blue"
-          onClick={() => (setActive(true), setRoute(route.id))}
-        >
+        <Button colorScheme="blue" onClick={() => getDetails()}>
           Details
         </Button>
       </div>
