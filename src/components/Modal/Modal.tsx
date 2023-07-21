@@ -41,7 +41,7 @@ const Modal: FC<IModal> = ({ active, setActive }) => {
               paddingRight: 30,
             }}
           >
-            <RouteForm setActive={setActive} />
+            <RouteForm setActive={setActive} maxLength={160} />
           </div>
           <div style={{ margin: "30px 30px 30px 20px" }}>
             <iframe

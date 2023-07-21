@@ -6,14 +6,23 @@ import React, { FC, useState } from "react";
 import IRoute, { IRouteForm } from "./types";
 import { useAppDispatch } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
+import { Textarea } from "@chakra-ui/textarea";
 
-const RouteForm: FC<IRouteForm> = ({ setActive }) => {
+const RouteForm: FC<IRouteForm> = ({ setActive, maxLength }) => {
   const [title, setTitle] = useState<string>("");
   const [shortDescription, setShortDescription] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [length, setLength] = useState<number>(1);
 
   const dispatch = useAppDispatch();
+
+  const checkLength = (event: any) => {
+    const inputValue = event.target.value;
+
+    if (inputValue.length <= maxLength) {
+      setShortDescription(inputValue);
+    }
+  };
 
   const addNewRoute = (e: any) => {
     e.preventDefault();
@@ -49,16 +58,17 @@ const RouteForm: FC<IRouteForm> = ({ setActive }) => {
       <Text mb="8px" mt="15px">
         Short description
       </Text>
-      <Input
+      <Textarea
         placeholder="Enter short description..."
         style={{ width: 450, height: 100, border: "2px solid gray" }}
         value={shortDescription}
-        onChange={(e) => setShortDescription(e.target.value)}
+        onChange={checkLength}
+        maxLength={maxLength}
       />
       <Text mb="8px" mt="15px">
         Full description
       </Text>
-      <Input
+      <Textarea
         placeholder="Enter full description..."
         style={{ width: 450, height: 150, border: "2px solid gray" }}
         value={description}

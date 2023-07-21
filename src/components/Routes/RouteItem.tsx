@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import React, { FC } from "react";
 import { IRouteArray } from "./types";
+import TruncatedText from "./TruncatedText";
 
 const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
   return (
@@ -30,7 +31,7 @@ const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
           </svg>
           {route.title}
         </strong>
-        <div>{route.shortDescription}</div>
+        <TruncatedText text={route.shortDescription} maxLength={50} />
       </div>
       <div>
         <strong style={{ marginRight: 10 }}>{route.length} km</strong>
