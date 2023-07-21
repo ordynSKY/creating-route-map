@@ -3,10 +3,12 @@ import IRoute from "../components/Routes/types";
 
 type RoutesState = {
   list: IRoute[];
+  searchRoute: "";
 };
 
 const initialState: RoutesState = {
   list: [],
+  searchRoute: "",
 };
 
 const routeSlice = createSlice({
@@ -25,9 +27,15 @@ const routeSlice = createSlice({
     deleteRoute(state, action) {
       state.list = state.list.filter((route) => route.id !== action.payload);
     },
+    filterRoutes(state, action) {
+      console.log("state", action);
+
+      state.searchRoute = action.payload;
+      state.list = state.list.filter((route) => route.title === action.payload);
+    },
   },
 });
 
-export const { oneNewRoute, deleteRoute } = routeSlice.actions;
+export const { oneNewRoute, deleteRoute, filterRoutes } = routeSlice.actions;
 
 export default routeSlice.reducer;

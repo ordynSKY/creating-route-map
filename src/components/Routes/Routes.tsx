@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import { useAppSelector } from "../../hook";
 import RouteItem from "./RouteItem";
-import { IRouteBlock } from "./types";
 
-const Routes: FC<IRouteBlock> = ({ setActive, setRoute }) => {
+interface IRoutes {
+  setActive: (arg: boolean) => void;
+  setRoute: (arg: number | undefined) => void;
+}
+
+const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
   const routeArray = useAppSelector((state) => state.routes.list);
 
   return (
