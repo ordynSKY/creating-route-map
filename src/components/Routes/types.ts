@@ -21,6 +21,7 @@ export interface IRouteBlock {
 export interface IRouteForm {
   setActive: (arg: boolean) => void;
   maxLength: number;
+  length: number;
 }
 
 export type TRouteArray = IRoute[];

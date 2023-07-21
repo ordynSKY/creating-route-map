@@ -8,11 +8,10 @@ import { useAppDispatch } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
 import { Textarea } from "@chakra-ui/textarea";
 
-const RouteForm: FC<IRouteForm> = ({ setActive, maxLength }) => {
+const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
   const [title, setTitle] = useState<string>("");
   const [shortDescription, setShortDescription] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [length, setLength] = useState<number>(1);
 
   const dispatch = useAppDispatch();
 
@@ -65,6 +64,9 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength }) => {
         onChange={checkLength}
         maxLength={maxLength}
       />
+      <p style={{ textAlign: "right" }}>
+        Limit {shortDescription.length} of 160
+      </p>
       <Text mb="8px" mt="15px">
         Full description
       </Text>
@@ -97,7 +99,7 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength }) => {
           />
         </svg>
         &nbsp;
-        <strong>Length 1.13 km</strong>
+        <strong>Length {length} km</strong>
       </div>
       <div style={{ marginTop: 50, marginBottom: 20, textAlign: "center" }}>
         <Button
