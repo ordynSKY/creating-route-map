@@ -3,14 +3,14 @@ import styles from "./Routes.module.css";
 import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Routes from "./Routes";
-import { TRouteArray } from "./types";
+import IRoute, { TRouteArray } from "./types";
 
 interface IRouteBlock {
-  routeArray: TRouteArray;
   setActive: (arg: boolean) => void;
+  setRoute: (arg: number | undefined) => void;
 }
 
-const RouteBlock: FC<IRouteBlock> = ({ routeArray, setActive }) => {
+const RouteBlock: FC<IRouteBlock> = ({ setActive, setRoute }) => {
   return (
     <div
       style={{
@@ -27,8 +27,8 @@ const RouteBlock: FC<IRouteBlock> = ({ routeArray, setActive }) => {
           <SearchIcon />
         </InputRightElement>
       </InputGroup>
-      <div style={{ overflowY: "auto", height: 410, paddingRight: 15 }}>
-        <Routes routeArray={routeArray} setActive={setActive} />
+      <div style={{ overflowY: "auto", height: 500, paddingRight: 15 }}>
+        <Routes setActive={setActive} setRoute={setRoute} />
       </div>
     </div>
   );

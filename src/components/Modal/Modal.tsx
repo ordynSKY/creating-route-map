@@ -7,7 +7,7 @@ import { Button } from "@chakra-ui/button";
 import { CheckIcon } from "@chakra-ui/icons";
 import RouteForm from "../Routes/RouteForm";
 
-const Modal: FC<IModal> = ({ active, setActive, oneNewRoute }) => {
+const Modal: FC<IModal> = ({ active, setActive }) => {
   return (
     <div
       className={active ? "modal active" : "modal"}
@@ -45,7 +45,7 @@ const Modal: FC<IModal> = ({ active, setActive, oneNewRoute }) => {
               paddingRight: 30,
             }}
           >
-            <RouteForm oneNewRoute={oneNewRoute} setActive={setActive} />
+            <RouteForm setActive={setActive} />
           </div>
           <div style={{ margin: "30px 30px 30px 20px" }}>
             <iframe

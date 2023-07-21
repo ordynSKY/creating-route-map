@@ -5,17 +5,21 @@ import { Text } from "@chakra-ui/layout";
 import React, { FC, FormEvent, useState } from "react";
 import IRoute from "./types";
 import { IModal } from "../Modal/types";
+import { useAppDispatch } from "../../hook";
+import { oneNewRoute } from "../../store/routeSlice";
 
 interface IRouteForm {
-  oneNewRoute: (e: IRoute) => void;
+  //   oneNewRoute: (e: IRoute) => void;
   setActive: (arg: boolean) => void;
 }
 
-const RouteForm: FC<IRouteForm> = ({ oneNewRoute, setActive }) => {
+const RouteForm: FC<IRouteForm> = ({ setActive }) => {
   const [title, setTitle] = useState<string>("");
   const [shortDescription, setShortDescription] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [length, setLength] = useState<number>(1);
+
+  const dispatch = useAppDispatch();
 
   const addNewRoute = (e: any) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ const RouteForm: FC<IRouteForm> = ({ oneNewRoute, setActive }) => {
       length,
     };
 
-    oneNewRoute(newRoute);
+    dispatch(oneNewRoute(newRoute));
 
     setTitle("");
 
