@@ -98,7 +98,6 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
             alt=""
             style={{
               width: 100,
-              marginRight: 15,
               marginBottom: 20,
             }}
           />

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { useAppSelector } from "../../hook";
 import RouteItem from "./RouteItem";
 
@@ -10,9 +10,31 @@ interface IRoutes {
 const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
   const routeArray = useAppSelector((state) => state.routes.list);
 
+  const searchRoute = useAppSelector((state) => state.routes.searchRoute);
+
+  const searchResult = useMemo(() => {
+    console.log("routeArray: ", routeArray);
+    console.log("searchRoute: ", searchRoute);
+
+    return routeArray?.filter(({ title, description }) => {
+      const searchTolowerCase = searchRoute.toLowerCase();
+
+      const isSearchedText = searchRoute
+        ? title.toLowerCase().includes(searchTolowerCase)
+        : true;
+      console.log(
+        "lowercase: ",
+        title.toLowerCase().includes(searchTolowerCase)
+      );
+      return isSearchedText;
+    });
+  }, [searchRoute, routeArray]);
+
+  console.log("searchro, ", searchResult);
+
   return (
     <div>
-      {routeArray.map((route, index) => (
+      {searchResult.map((route, index) => (
         <RouteItem
           index={index}
           route={route}
