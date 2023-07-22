@@ -22,6 +22,7 @@ const routeSlice = createSlice({
         shortDescription: action.payload.shortDescription,
         description: action.payload.description,
         length: action.payload.length,
+        isFavorite: false,
       });
     },
     deleteRoute(state, action) {
@@ -32,9 +33,18 @@ const routeSlice = createSlice({
 
       state.searchRoute = action.payload;
     },
+    setFavoriteRoute(state, action) {
+      state.list = state?.list?.map((route) => {
+        if (route?.id === action?.payload) {
+          return { ...route, isFavorite: !route?.isFavorite };
+        }
+        return route;
+      });
+    },
   },
 });
 
-export const { oneNewRoute, deleteRoute, filterRoutes } = routeSlice.actions;
+export const { oneNewRoute, deleteRoute, filterRoutes, setFavoriteRoute } =
+  routeSlice.actions;
 
 export default routeSlice.reducer;

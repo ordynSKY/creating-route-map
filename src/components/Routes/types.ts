@@ -4,6 +4,7 @@ export default interface IRoute {
   shortDescription: string;
   description: string;
   length: number;
+  isFavorite: boolean;
 }
 
 export interface IRouteArray {

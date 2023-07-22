@@ -16,7 +16,7 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
     console.log("routeArray: ", routeArray);
     console.log("searchRoute: ", searchRoute);
 
-    return routeArray?.filter(({ title, description }) => {
+    const searchArray = routeArray?.filter(({ title, description }) => {
       const searchTolowerCase = searchRoute.toLowerCase();
 
       const isSearchedText = searchRoute
@@ -27,6 +27,15 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
         title.toLowerCase().includes(searchTolowerCase)
       );
       return isSearchedText;
+    });
+    return searchArray.sort((a, b) => {
+      if (a.isFavorite > b.isFavorite) {
+        return -1;
+      }
+      if (a.isFavorite < b.isFavorite) {
+        return 1;
+      }
+      return 0;
     });
   }, [searchRoute, routeArray]);
 

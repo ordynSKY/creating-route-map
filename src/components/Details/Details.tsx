@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../hook";
-import { deleteRoute } from "../../store/routeSlice";
+import { deleteRoute, setFavoriteRoute } from "../../store/routeSlice";
 
 interface IDetails {
   active: boolean;
@@ -12,11 +12,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
   const routesArray = useAppSelector((state) => state.routes.list);
   const dispatch = useAppDispatch();
 
-  const route = routesArray.find((item) => {
-    if (item.id === routeId) {
-      return true;
-    }
-  });
+  const route = routesArray.find((item) => item.id === routeId);
 
   return (
     <>
@@ -62,15 +58,30 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
               marginTop: 20,
             }}
           >
-            <button
-              style={{
-                marginBottom: 10,
-                color: "blue",
-                textDecoration: "underline",
-              }}
-            >
-              Add to favorites
-            </button>
+            {route?.isFavorite ? (
+              <button
+                style={{
+                  marginBottom: 10,
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+                onClick={() => dispatch(setFavoriteRoute(route?.id))}
+              >
+                Remove from favorites
+              </button>
+            ) : (
+              <button
+                style={{
+                  marginBottom: 10,
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+                onClick={() => dispatch(setFavoriteRoute(route?.id))}
+              >
+                Add to favorites
+              </button>
+            )}
+
             <button
               style={{ color: "red", textDecoration: "underline" }}
               onClick={() => (

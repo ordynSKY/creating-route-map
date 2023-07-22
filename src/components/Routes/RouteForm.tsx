@@ -34,6 +34,7 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
       shortDescription,
       description,
       length,
+      isFavorite: false,
     };
 
     dispatch(oneNewRoute(newRoute));
