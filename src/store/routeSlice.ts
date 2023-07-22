@@ -4,11 +4,17 @@ import IRoute from "../components/Routes/types";
 type RoutesState = {
   list: IRoute[];
   searchRoute: "";
+  origin: google.maps.LatLng | null;
+  destination: google.maps.LatLng | null;
+  directions: google.maps.DirectionsResult | null;
 };
 
 const initialState: RoutesState = {
   list: [],
   searchRoute: "",
+  origin: null,
+  destination: null,
+  directions: null,
 };
 
 const routeSlice = createSlice({
@@ -41,10 +47,26 @@ const routeSlice = createSlice({
         return route;
       });
     },
+    setOriginAction(state, action) {
+      state.origin = action.payload;
+    },
+    setDestinationAction(state, action) {
+      state.destination = action.payload;
+    },
+    setDirectionAction(state, action) {
+      state.directions = action.payload;
+    },
   },
 });
 
-export const { oneNewRoute, deleteRoute, filterRoutes, setFavoriteRoute } =
-  routeSlice.actions;
+export const {
+  oneNewRoute,
+  deleteRoute,
+  filterRoutes,
+  setFavoriteRoute,
+  setOriginAction,
+  setDestinationAction,
+  setDirectionAction,
+} = routeSlice.actions;
 
 export default routeSlice.reducer;

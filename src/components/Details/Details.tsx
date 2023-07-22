@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { deleteRoute, setFavoriteRoute } from "../../store/routeSlice";
+import DisplayMap from "../GoogleMap/DisplayMap";
 
 interface IDetails {
   active: boolean;
@@ -43,13 +44,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
           <div style={{ fontSize: 15, marginBottom: 20, width: 600 }}>
             {route?.description}
           </div>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2645.6028426167713!2d35.04702845275926!3d48.464149312688455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1689619435168!5m2!1sru!2sua"
-            width="600"
-            height="450"
-            style={{ border: 0 }}
-            loading="lazy"
-          ></iframe>
+          {route && <DisplayMap />}
           <div
             style={{
               display: "flex",

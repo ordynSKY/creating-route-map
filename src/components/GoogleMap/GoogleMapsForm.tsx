@@ -7,6 +7,8 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { Button } from "@chakra-ui/button";
+import { useAppDispatch, useAppSelector } from "../../hook";
+import { setDestinationAction, setOriginAction } from "../../store/routeSlice";
 
 const containerStyle = {
   width: "100%",
@@ -32,6 +34,8 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
     useState<google.maps.DirectionsResult | null>(null);
   const [routeLength, setRouteLength] = useState<number>(0);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     // Calculate and set the route length when directions change
     if (directions) {
@@ -54,12 +58,16 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
   const onMapClick = (event: google.maps.MapMouseEvent) => {
     if (!origin) {
       setOrigin(event.latLng);
+      dispatch(setOriginAction(event.latLng));
     } else if (!destination) {
       setDestination(event.latLng);
+      dispatch(setDestinationAction(event.latLng));
     } else {
       // If both origin and destination are already set, reset them on map click
       setOrigin(null);
+      dispatch(setOriginAction(null));
       setDestination(null);
+      dispatch(setDestinationAction(null));
       setDirections(null);
       setRouteLength(0);
       setLength(0);
