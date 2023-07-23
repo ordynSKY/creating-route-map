@@ -12,6 +12,10 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
 
   const searchRoute = useAppSelector((state) => state.routes.searchRoute);
 
+  const searchDescription = useAppSelector(
+    (state) => state.routes.searchDescription
+  );
+
   const searchResult = useMemo(() => {
     console.log("routeArray: ", routeArray);
     console.log("searchRoute: ", searchRoute);
@@ -19,14 +23,16 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
     const searchArray = routeArray?.filter(({ title, description }) => {
       const searchTolowerCase = searchRoute.toLowerCase();
 
+      const searchTolowerCaseDesc = searchDescription?.toLowerCase();
+
       const isSearchedText = searchRoute
         ? title.toLowerCase().includes(searchTolowerCase)
         : true;
-      console.log(
-        "lowercase: ",
-        title.toLowerCase().includes(searchTolowerCase)
-      );
-      return isSearchedText;
+
+      const isSearchedDescText = searchDescription
+        ? description.toLowerCase().includes(searchTolowerCaseDesc)
+        : true;
+      return isSearchedText || isSearchedDescText;
     });
     return searchArray.sort((a, b) => {
       if (a.isFavorite > b.isFavorite) {

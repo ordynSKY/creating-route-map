@@ -4,6 +4,7 @@ import IRoute from "../components/Routes/types";
 type RoutesState = {
   list: IRoute[];
   searchRoute: "";
+  searchDescription: "";
   origin: google.maps.LatLng | null;
   destination: google.maps.LatLng | null;
   directions: google.maps.DirectionsResult | null;
@@ -12,6 +13,7 @@ type RoutesState = {
 const initialState: RoutesState = {
   list: [],
   searchRoute: "",
+  searchDescription: "",
   origin: null,
   destination: null,
   directions: null,
