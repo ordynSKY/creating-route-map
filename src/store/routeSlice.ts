@@ -44,12 +44,11 @@ const routeSlice = createSlice({
       state.searchRoute = action.payload;
     },
     setFavoriteRoute(state, action) {
-      state.list = state?.list?.map((route) => {
-        if (route?.id === action?.payload) {
-          return { ...route, isFavorite: !route?.isFavorite };
-        }
-        return route;
-      });
+      const i = state?.list?.findIndex(
+        (route) => route?.id === action?.payload
+      );
+      const el = state.list[i];
+      if (el) state.list[i] = { ...el, isFavorite: !el?.isFavorite };
     },
     setOriginAction(state, action) {
       state.origin = action.payload;

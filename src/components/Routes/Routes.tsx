@@ -23,14 +23,12 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
     const searchArray = routeArray?.filter(({ title, description }) => {
       const searchTolowerCase = searchRoute.toLowerCase();
 
-      const searchTolowerCaseDesc = searchDescription?.toLowerCase();
-
       const isSearchedText = searchRoute
         ? title.toLowerCase().includes(searchTolowerCase)
         : true;
 
-      const isSearchedDescText = searchDescription
-        ? description.toLowerCase().includes(searchTolowerCaseDesc)
+      const isSearchedDescText = searchRoute
+        ? description.toLowerCase().includes(searchTolowerCase)
         : true;
       return isSearchedText || isSearchedDescText;
     });

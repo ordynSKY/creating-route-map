@@ -26,13 +26,15 @@ interface IGoogleMapsForm {
 }
 
 const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
-  const [origin, setOrigin] = useState<google.maps.LatLng | null>(null);
+  const [origin, setOrigin] = useState<google.maps.LatLng | any>(null);
   const [destination, setDestination] = useState<google.maps.LatLng | null>(
     null
   );
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
   const [routeLength, setRouteLength] = useState<number>(0);
+
+  const [mapKey, setMapKey] = useState<number>(0);
 
   const dispatch = useAppDispatch();
 
@@ -76,6 +78,7 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
 
   const onDirectionsLoad = (directions: google.maps.DirectionsResult | any) => {
     setDirections(directions);
+    setMapKey((prevKey) => prevKey + 1);
   };
 
   const calculateRoute = () => {
@@ -104,21 +107,32 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
   return (
     <div>
       <p>Click on the map to set the origin and destination.</p>
-      {/* <br />
-      {origin && <p>Origin: {origin.toUrlValue()}</p>}
-      {destination && <p>Destination: {destination.toUrlValue()}</p>} */}
-      <br />
-      {/*{routeLength > 0 && <p>Route Length: {routeLength} km</p>} */}
       <LoadScript googleMapsApiKey="AIzaSyDQdPtO_rISuddzAew90sDrepPIXj5wp1s">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
           zoom={16}
           onClick={onMapClick}
+          key={mapKey}
         >
-          {origin && <Marker position={origin} />}
-          {destination && <Marker position={destination} />}
-          {directions && <DirectionsRenderer directions={directions} />}
+          {origin && (
+            <Marker
+              position={origin.toJSON()}
+              key={origin.toJSON().toString()}
+            />
+          )}
+          {destination && (
+            <Marker
+              position={destination.toJSON()}
+              key={destination.toJSON().toString()}
+            />
+          )}
+          {directions && (
+            <DirectionsRenderer
+              directions={directions}
+              options={{ directions: directions }}
+            />
+          )}
         </GoogleMap>
       </LoadScript>
       <br />
