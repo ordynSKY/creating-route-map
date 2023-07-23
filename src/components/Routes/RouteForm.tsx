@@ -4,7 +4,7 @@ import { Input } from "@chakra-ui/input";
 import { Text } from "@chakra-ui/layout";
 import React, { FC, useState } from "react";
 import IRoute, { IRouteForm } from "./types";
-import { useAppDispatch } from "../../hook";
+import { useAppDispatch, useAppSelector } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
 import { Textarea } from "@chakra-ui/textarea";
 
@@ -14,6 +14,9 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
   const [description, setDescription] = useState<string>("");
 
   const dispatch = useAppDispatch();
+
+  const origin = useAppSelector((state) => state.routes.origin);
+  const destination = useAppSelector((state) => state.routes.destination);
 
   const checkLength = (event: any) => {
     const inputValue = event.target.value;
@@ -35,6 +38,8 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
       description,
       length,
       isFavorite: false,
+      origin,
+      destination,
     };
 
     dispatch(oneNewRoute(newRoute));

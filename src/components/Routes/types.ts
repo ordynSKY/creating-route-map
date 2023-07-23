@@ -5,6 +5,8 @@ export default interface IRoute {
   description: string;
   length: number;
   isFavorite: boolean;
+  origin: google.maps.LatLng | null;
+  destination: google.maps.LatLng | null;
 }
 
 export interface IRouteArray {

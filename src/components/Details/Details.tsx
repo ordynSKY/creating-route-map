@@ -14,6 +14,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
   const dispatch = useAppDispatch();
 
   const route = routesArray.find((item) => item.id === routeId);
+  console.log("route", route);
 
   return (
     <>
@@ -44,7 +45,9 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
           <div style={{ fontSize: 15, marginBottom: 20, width: 600 }}>
             {route?.description}
           </div>
-          {route && <DisplayMap />}
+          {route && (
+            <DisplayMap origin={route.origin} destination={route.destination} />
+          )}
           <div
             style={{
               display: "flex",

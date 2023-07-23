@@ -29,6 +29,8 @@ const routeSlice = createSlice({
         description: action.payload.description,
         length: action.payload.length,
         isFavorite: false,
+        origin: action.payload.origin,
+        destination: action.payload.destination,
       });
     },
     deleteRoute(state, action) {

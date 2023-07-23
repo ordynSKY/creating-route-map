@@ -7,7 +7,8 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { Button } from "@chakra-ui/button";
-import { useAppSelector } from "../../hook";
+import { useAppDispatch, useAppSelector } from "../../hook";
+import { setDirectionAction } from "../../store/routeSlice";
 
 const containerStyle = {
   width: "100%",
@@ -20,14 +21,17 @@ const center = {
   lng: 35.047428863794075,
 };
 
-const DisplayMap: React.FC<any> = () => {
+const DisplayMap: React.FC<any> = ({ origin, destination }) => {
   //   const origin = { lat: 40.712776, lng: -74.005974 };
   //   const destination = { lat: 34.052235, lng: -118.243683 };
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
 
-  const origin = useAppSelector((state) => state.routes.origin);
-  const destination = useAppSelector((state) => state.routes.destination);
+  // const origin = useAppSelector((state) => state.routes.origin);
+  // const destination = useAppSelector((state) => state.routes.destination);
+  // const directions = useAppSelector((state) => state.routes.directions);
+
+  const dispatch = useAppDispatch();
 
   console.log("origin: ", origin);
   console.log("destination: ", destination);
@@ -56,10 +60,10 @@ const DisplayMap: React.FC<any> = () => {
         }
       );
     }
-  }, []);
+  }, [origin, destination]);
 
   return (
-    <div>
+    <div key={origin}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
         {origin && <Marker position={origin} />}
         {destination && <Marker position={destination} />}
