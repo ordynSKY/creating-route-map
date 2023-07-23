@@ -8,14 +8,23 @@ import { useAppDispatch, useAppSelector } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
 import { Textarea } from "@chakra-ui/textarea";
 
-const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
+const RouteForm: FC<IRouteForm> = ({
+  setActive,
+  maxLength,
+  length,
+  setMapKey,
+  setLength,
+}) => {
   const [title, setTitle] = useState<string>("");
+
   const [shortDescription, setShortDescription] = useState<string>("");
+
   const [description, setDescription] = useState<string>("");
 
   const dispatch = useAppDispatch();
 
   const origin = useAppSelector((state) => state.routes.origin);
+
   const destination = useAppSelector((state) => state.routes.destination);
 
   const checkLength = (event: any) => {
@@ -44,11 +53,15 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
 
     dispatch(oneNewRoute(newRoute));
 
+    setMapKey((prevKey) => prevKey + 1);
+
     setTitle("");
 
     setDescription("");
 
     setShortDescription("");
+
+    setLength(0);
   };
 
   return (
@@ -113,6 +126,7 @@ const RouteForm: FC<IRouteForm> = ({ setActive, maxLength, length }) => {
           colorScheme="black"
           variant="outline"
           onClick={addNewRoute}
+          isDisabled={title && shortDescription && description ? false : true}
         >
           Add path
         </Button>

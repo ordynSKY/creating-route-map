@@ -4,8 +4,8 @@ import { IRouteArray } from "./types";
 import TruncatedText from "./TruncatedText";
 
 const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
-  const { isFavorite, id, title, shortDescription, description, length } =
-    route;
+  const { isFavorite, id, title, shortDescription, length } = route;
+
   const getDetails = () => {
     setActive(true);
     setRoute(id);

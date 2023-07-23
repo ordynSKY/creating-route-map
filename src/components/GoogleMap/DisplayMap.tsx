@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  DirectionsService,
-  DirectionsRenderer,
-  Marker,
-} from "@react-google-maps/api";
-import { Button } from "@chakra-ui/button";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import { setDirectionAction } from "../../store/routeSlice";
+import { GoogleMap, DirectionsRenderer, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -22,19 +13,8 @@ const center = {
 };
 
 const DisplayMap: React.FC<any> = ({ origin, destination }) => {
-  //   const origin = { lat: 40.712776, lng: -74.005974 };
-  //   const destination = { lat: 34.052235, lng: -118.243683 };
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
-
-  // const origin = useAppSelector((state) => state.routes.origin);
-  // const destination = useAppSelector((state) => state.routes.destination);
-  // const directions = useAppSelector((state) => state.routes.directions);
-
-  const dispatch = useAppDispatch();
-
-  console.log("origin: ", origin);
-  console.log("destination: ", destination);
 
   const onDirectionsLoad = (directions: google.maps.DirectionsResult | any) => {
     setDirections(directions);

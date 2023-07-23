@@ -7,11 +7,10 @@ import GoogleMapsForm from "../GoogleMap/GoogleMapsForm";
 const Modal: FC<IModal> = ({ active, setActive }) => {
   const [length, setLength] = useState<number>(0);
 
+  const [mapKey, setMapKey] = useState<number>(0);
+
   return (
-    <div
-      className={active ? "modal active" : "modal"}
-      onClick={() => setActive(false)}
-    >
+    <div className={active ? "modal active" : "modal"}>
       <div
         className={active ? "modal__content active" : "modal__content"}
         onClick={(e) => e.stopPropagation()}
@@ -44,17 +43,16 @@ const Modal: FC<IModal> = ({ active, setActive }) => {
               paddingRight: 30,
             }}
           >
-            <RouteForm setActive={setActive} maxLength={160} length={length} />
+            <RouteForm
+              setActive={setActive}
+              maxLength={160}
+              length={length}
+              setMapKey={setMapKey}
+              setLength={setLength}
+            />
           </div>
           <div style={{ margin: "30px 30px 30px 20px" }}>
-            {/* <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2645.6028426167713!2d35.04702845275926!3d48.464149312688455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1689619435168!5m2!1sru!2sua"
-              width="500"
-              height="600"
-              style={{ border: 0 }}
-              loading="lazy"
-            ></iframe> */}
-            <GoogleMapsForm setLength={setLength} />
+            <GoogleMapsForm setLength={setLength} mapKey={mapKey} />
           </div>
         </div>
       </div>

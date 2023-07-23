@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export default interface IRoute {
   id: number | undefined;
   title: string;
@@ -25,6 +27,8 @@ export interface IRouteForm {
   setActive: (arg: boolean) => void;
   maxLength: number;
   length: number;
+  setMapKey: Dispatch<SetStateAction<number>>;
+  setLength: Dispatch<SetStateAction<number>>;
 }
 
 export type TRouteArray = IRoute[];

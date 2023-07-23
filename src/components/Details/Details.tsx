@@ -11,10 +11,10 @@ interface IDetails {
 
 const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
   const routesArray = useAppSelector((state) => state.routes.list);
+
   const dispatch = useAppDispatch();
 
   const route = routesArray.find((item) => item.id === routeId);
-  console.log("route", route);
 
   return (
     <>
@@ -25,7 +25,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
               ? {
                   marginLeft: 20,
                   overflowY: "auto",
-                  height: 500,
+                  height: 550,
                   paddingRight: 20,
                 }
               : { display: "none" }

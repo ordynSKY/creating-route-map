@@ -39,8 +39,6 @@ const routeSlice = createSlice({
       state.list = state.list.filter((route) => route.id !== action.payload);
     },
     filterRoutes(state, action) {
-      console.log("state", action);
-
       state.searchRoute = action.payload;
     },
     setFavoriteRoute(state, action) {
@@ -56,9 +54,6 @@ const routeSlice = createSlice({
     setDestinationAction(state, action) {
       state.destination = action.payload;
     },
-    setDirectionAction(state, action) {
-      state.directions = action.payload;
-    },
   },
 });
 
@@ -69,7 +64,6 @@ export const {
   setFavoriteRoute,
   setOriginAction,
   setDestinationAction,
-  setDirectionAction,
 } = routeSlice.actions;
 
 export default routeSlice.reducer;

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   LoadScript,
-  DirectionsService,
   DirectionsRenderer,
   Marker,
 } from "@react-google-maps/api";
 import { Button } from "@chakra-ui/button";
-import { useAppDispatch, useAppSelector } from "../../hook";
+import { useAppDispatch } from "../../hook";
 import { setDestinationAction, setOriginAction } from "../../store/routeSlice";
 
 const containerStyle = {
@@ -23,36 +22,30 @@ const center = {
 
 interface IGoogleMapsForm {
   setLength: (arg: number) => void;
+  mapKey: number;
 }
 
-const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
+const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength, mapKey }) => {
   const [origin, setOrigin] = useState<google.maps.LatLng | any>(null);
   const [destination, setDestination] = useState<google.maps.LatLng | null>(
     null
   );
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
-  const [routeLength, setRouteLength] = useState<number>(0);
-
-  const [mapKey, setMapKey] = useState<number>(0);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // Calculate and set the route length when directions change
     if (directions) {
       const route = directions.routes[0];
       let length = 0;
 
-      // Sum up the distance of each leg of the route
       for (let i = 0; i < route.legs.length; i++) {
         length += route.legs[i].distance?.value || 0;
       }
 
-      // Convert length to kilometers (or any other unit you prefer)
       length = length / 1000;
 
-      setRouteLength(length);
       setLength(length);
     }
   }, [directions]);
@@ -65,27 +58,21 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
       setDestination(event.latLng);
       dispatch(setDestinationAction(event.latLng));
     } else {
-      // If both origin and destination are already set, reset them on map click
       setOrigin(null);
       dispatch(setOriginAction(null));
       setDestination(null);
       dispatch(setDestinationAction(null));
       setDirections(null);
-      setRouteLength(0);
       setLength(0);
     }
   };
 
   const onDirectionsLoad = (directions: google.maps.DirectionsResult | any) => {
     setDirections(directions);
-    setMapKey((prevKey) => prevKey + 1);
   };
 
   const calculateRoute = () => {
     if (origin && destination) {
-      setDirections(null); // Clear previous directions
-
-      // Use the DirectionsService to calculate the route
       const directionsService = new google.maps.DirectionsService();
       directionsService.route(
         {
@@ -141,9 +128,6 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength }) => {
           Calculate Route
         </Button>
       </div>
-      {/* <button onClick={calculateRoute} disabled={!origin || !destination}>
-        
-      </button> */}
     </div>
   );
 };
