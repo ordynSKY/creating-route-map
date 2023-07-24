@@ -6,7 +6,7 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { Button } from "@chakra-ui/button";
-import { useAppDispatch } from "../../hook";
+import { useAppDispatch } from "../../store/hook";
 import { setDestinationAction, setOriginAction } from "../../store/routeSlice";
 import { IGoogleMapsForm } from "./types";
 

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "../../hook";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { deleteRoute, setFavoriteRoute } from "../../store/routeSlice";
 import DisplayMap from "../GoogleMap/DisplayMap";
 import styles from "./Details.module.css";

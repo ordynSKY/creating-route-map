@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { useAppSelector } from "../../hook";
+import { useAppSelector } from "../../store/hook";
 import RouteItem from "./RouteItem";
 import { IRoutes } from "./types";
 

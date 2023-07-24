@@ -3,7 +3,7 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Routes from "./Routes";
 import { IRouteBlock } from "./types";
-import { useAppDispatch } from "../../hook";
+import { useAppDispatch } from "../../store/hook";
 import { filterRoutes } from "../../store/routeSlice";
 import styles from "./Routes.module.css";
 

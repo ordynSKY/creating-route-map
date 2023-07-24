@@ -4,7 +4,7 @@ import { Input } from "@chakra-ui/input";
 import { Text } from "@chakra-ui/layout";
 import React, { FC, useState } from "react";
 import IRoute, { IRouteForm } from "./types";
-import { useAppDispatch, useAppSelector } from "../../hook";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { oneNewRoute } from "../../store/routeSlice";
 import { Textarea } from "@chakra-ui/textarea";
 
