@@ -32,3 +32,13 @@ export interface IRouteForm {
 }
 
 export type TRouteArray = IRoute[];
+
+export interface IRoutes {
+  setActive: (arg: boolean) => void;
+  setRoute: (arg: number | undefined) => void;
+}
+
+export interface ITruncatedText {
+  text: string;
+  maxLength: number;
+}

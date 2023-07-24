@@ -1,11 +1,7 @@
 import React, { FC, useMemo } from "react";
 import { useAppSelector } from "../../hook";
 import RouteItem from "./RouteItem";
-
-interface IRoutes {
-  setActive: (arg: boolean) => void;
-  setRoute: (arg: number | undefined) => void;
-}
+import { IRoutes } from "./types";
 
 const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
   const routeArray = useAppSelector((state) => state.routes.list);

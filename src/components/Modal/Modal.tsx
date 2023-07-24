@@ -15,14 +15,7 @@ const Modal: FC<IModal> = ({ active, setActive }) => {
         className={active ? "modal__content active" : "modal__content"}
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "30px 30px 20px 30px",
-            borderBottom: "2px solid gray",
-          }}
-        >
+        <div className="modal-title">
           Add new path
           <button onClick={() => setActive(false)}>
             <svg
@@ -36,13 +29,7 @@ const Modal: FC<IModal> = ({ active, setActive }) => {
           </button>
         </div>
         <div style={{ display: "flex" }}>
-          <div
-            style={{
-              borderRight: "2px solid gray",
-              margin: 20,
-              paddingRight: 30,
-            }}
-          >
+          <div className="routeForm">
             <RouteForm
               setActive={setActive}
               maxLength={160}

@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from "../../hook";
 import { oneNewRoute } from "../../store/routeSlice";
 import { Textarea } from "@chakra-ui/textarea";
 
+import styles from "./Routes.module.css";
+
 const RouteForm: FC<IRouteForm> = ({
   setActive,
   maxLength,
@@ -69,7 +71,7 @@ const RouteForm: FC<IRouteForm> = ({
       <Text mb="8px">Title</Text>
       <Input
         placeholder="Enter title..."
-        style={{ width: 450, border: "2px solid gray" }}
+        className={styles.formInput}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -95,15 +97,7 @@ const RouteForm: FC<IRouteForm> = ({
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 50,
-          fontSize: 20,
-        }}
-      >
+      <div className={styles.formLength}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -120,7 +114,7 @@ const RouteForm: FC<IRouteForm> = ({
         &nbsp;
         <strong>Length {length} km</strong>
       </div>
-      <div style={{ marginTop: 50, marginBottom: 20, textAlign: "center" }}>
+      <div className={styles.formBtn}>
         <Button
           leftIcon={<CheckIcon />}
           colorScheme="black"

@@ -11,11 +11,7 @@ const Header: FC<IHeader> = ({ setActive }) => {
     <>
       <div className={styles.navbar}>
         <div className={styles.logo}>
-          <img
-            src="/arrows.svg"
-            alt=""
-            style={{ width: 30, marginRight: 15 }}
-          />
+          <img src="/arrows.svg" alt="" className={styles.arrow} />
           Saunter
         </div>
         <div>

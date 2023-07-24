@@ -1,16 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import IRoute from "../components/Routes/types";
+import { TRoutesState } from "./types";
 
-type RoutesState = {
-  list: IRoute[];
-  searchRoute: "";
-  searchDescription: "";
-  origin: google.maps.LatLng | null;
-  destination: google.maps.LatLng | null;
-  directions: google.maps.DirectionsResult | null;
-};
-
-const initialState: RoutesState = {
+const initialState: TRoutesState = {
   list: [],
   searchRoute: "",
   searchDescription: "",

@@ -5,17 +5,13 @@ import Routes from "./Routes";
 import { IRouteBlock } from "./types";
 import { useAppDispatch } from "../../hook";
 import { filterRoutes } from "../../store/routeSlice";
+import styles from "./Routes.module.css";
 
 const RouteBlock: FC<IRouteBlock> = ({ setActive, setRoute }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div
-      style={{
-        borderRight: "2px solid gray",
-        paddingRight: 20,
-      }}
-    >
+    <div className={styles.routeBlock}>
       <InputGroup>
         <Input
           placeholder="Search..."

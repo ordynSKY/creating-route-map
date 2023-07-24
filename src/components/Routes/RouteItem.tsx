@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button";
 import React, { FC } from "react";
 import { IRouteArray } from "./types";
 import TruncatedText from "./TruncatedText";
+import styles from "./Routes.module.css";
 
 const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
   const { isFavorite, id, title, shortDescription, length } = route;
@@ -12,14 +13,7 @@ const RouteItem: FC<IRouteArray> = ({ route, setActive, setRoute }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        margin: "20px 0 20px 0",
-      }}
-    >
+    <div className={styles.routeItem}>
       <div>
         <strong style={{ display: "flex", alignItems: "center" }}>
           {isFavorite && (

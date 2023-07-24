@@ -2,12 +2,8 @@ import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { deleteRoute, setFavoriteRoute } from "../../store/routeSlice";
 import DisplayMap from "../GoogleMap/DisplayMap";
-
-interface IDetails {
-  active: boolean;
-  routeId: number | undefined;
-  setActive: (arg: boolean) => void;
-}
+import styles from "./Details.module.css";
+import { IDetails } from "./types";
 
 const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
   const routesArray = useAppSelector((state) => state.routes.list);
@@ -31,49 +27,25 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
               : { display: "none" }
           }
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: 30,
-              fontSize: 25,
-            }}
-          >
+          <div className={styles.title}>
             <strong>{route?.title}</strong>
             <strong>{route?.length} km</strong>
           </div>
-          <div style={{ fontSize: 15, marginBottom: 20, width: 600 }}>
-            {route?.description}
-          </div>
+          <div className={styles.description}>{route?.description}</div>
           {route && (
             <DisplayMap origin={route.origin} destination={route.destination} />
           )}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "end",
-              marginTop: 20,
-            }}
-          >
+          <div className={styles.buttons}>
             {route?.isFavorite ? (
               <button
-                style={{
-                  marginBottom: 10,
-                  color: "blue",
-                  textDecoration: "underline",
-                }}
+                className={styles.favoriteBtn}
                 onClick={() => dispatch(setFavoriteRoute(route?.id))}
               >
                 Remove from favorites
               </button>
             ) : (
               <button
-                style={{
-                  marginBottom: 10,
-                  color: "blue",
-                  textDecoration: "underline",
-                }}
+                className={styles.favoriteBtn}
                 onClick={() => dispatch(setFavoriteRoute(route?.id))}
               >
                 Add to favorites
@@ -81,7 +53,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
             )}
 
             <button
-              style={{ color: "red", textDecoration: "underline" }}
+              className={styles.removeBtn}
               onClick={() => (
                 dispatch(deleteRoute(route?.id)), setActive(false)
               )}
@@ -91,17 +63,7 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
           </div>
         </div>
       ) : (
-        <div
-          style={{
-            width: 600,
-            height: 450,
-            marginLeft: 20,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+        <div className={styles.selectPath}>
           <img
             src="/arrows.svg"
             alt=""

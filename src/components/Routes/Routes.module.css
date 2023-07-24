@@ -1,0 +1,37 @@
+.formInput {
+  width: 450px;
+  border: 2px solid gray;
+}
+
+.formLength {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.formBtn {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.routeItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 20px 0;
+}
+
+.shortDescription {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.routeBlock {
+  border-right: 2px solid gray;
+  padding-right: 20px;
+}
