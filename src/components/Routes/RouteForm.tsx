@@ -71,7 +71,7 @@ const RouteForm: FC<IRouteForm> = ({
       <Text mb="8px">Title</Text>
       <Input
         placeholder="Enter title..."
-        className={styles.formInput}
+        style={{ width: 450, border: "2px solid gray" }}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />

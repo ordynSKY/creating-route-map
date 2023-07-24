@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { deleteRoute, setFavoriteRoute } from "../../store/routeSlice";
 import DisplayMap from "../GoogleMap/DisplayMap";
@@ -12,6 +12,14 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
 
   const route = routesArray.find((item) => item.id === routeId);
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, [route]);
+
   return (
     <>
       {active ? (
@@ -21,13 +29,13 @@ const Details: FC<IDetails> = ({ active, routeId, setActive }) => {
               ? {
                   marginLeft: 20,
                   overflowY: "auto",
-                  height: 550,
+                  height: 630,
                   paddingRight: 20,
                 }
               : { display: "none" }
           }
         >
-          <div className={styles.title}>
+          <div className={styles.title} ref={ref} tabIndex={0}>
             <strong>{route?.title}</strong>
             <strong>{route?.length} km</strong>
           </div>

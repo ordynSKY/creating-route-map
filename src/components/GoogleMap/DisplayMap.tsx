@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { GoogleMap, DirectionsRenderer, Marker } from "@react-google-maps/api";
+import { IDisplayMap } from "./types";
 
 const containerStyle = {
   width: "100%",
   maxWidth: "600px",
-  height: "488px",
+  height: "400px",
 };
 
 const center = {
@@ -12,11 +13,13 @@ const center = {
   lng: 35.047428863794075,
 };
 
-const DisplayMap: React.FC<any> = ({ origin, destination }) => {
+const DisplayMap: FC<IDisplayMap> = ({ origin, destination }) => {
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
 
-  const onDirectionsLoad = (directions: google.maps.DirectionsResult | any) => {
+  const onDirectionsLoad = (
+    directions: google.maps.DirectionsResult | null
+  ) => {
     setDirections(directions);
   };
 
@@ -43,7 +46,7 @@ const DisplayMap: React.FC<any> = ({ origin, destination }) => {
   }, [origin, destination]);
 
   return (
-    <div key={origin}>
+    <div>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
         {origin && <Marker position={origin} />}
         {destination && <Marker position={destination} />}

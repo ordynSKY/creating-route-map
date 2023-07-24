@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -8,6 +8,7 @@ import {
 import { Button } from "@chakra-ui/button";
 import { useAppDispatch } from "../../hook";
 import { setDestinationAction, setOriginAction } from "../../store/routeSlice";
+import { IGoogleMapsForm } from "./types";
 
 const containerStyle = {
   width: "100%",
@@ -20,13 +21,8 @@ const center = {
   lng: 35.047428863794075,
 };
 
-interface IGoogleMapsForm {
-  setLength: (arg: number) => void;
-  mapKey: number;
-}
-
-const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength, mapKey }) => {
-  const [origin, setOrigin] = useState<google.maps.LatLng | any>(null);
+const GoogleMapsForm: FC<IGoogleMapsForm> = ({ setLength, mapKey }) => {
+  const [origin, setOrigin] = useState<google.maps.LatLng | null>(null);
   const [destination, setDestination] = useState<google.maps.LatLng | null>(
     null
   );
@@ -67,7 +63,9 @@ const GoogleMapsForm: React.FC<IGoogleMapsForm> = ({ setLength, mapKey }) => {
     }
   };
 
-  const onDirectionsLoad = (directions: google.maps.DirectionsResult | any) => {
+  const onDirectionsLoad = (
+    directions: google.maps.DirectionsResult | null
+  ) => {
     setDirections(directions);
   };
 

@@ -1,8 +1,12 @@
 import { FC, useState } from "react";
 import "./Modal.css";
-import { IModal } from "./types";
 import RouteForm from "../Routes/RouteForm";
 import GoogleMapsForm from "../GoogleMap/GoogleMapsForm";
+
+interface IModal {
+  active: boolean;
+  setActive: (arg: boolean) => void;
+}
 
 const Modal: FC<IModal> = ({ active, setActive }) => {
   const [length, setLength] = useState<number>(0);

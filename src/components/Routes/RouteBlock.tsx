@@ -22,7 +22,7 @@ const RouteBlock: FC<IRouteBlock> = ({ setActive, setRoute }) => {
           <SearchIcon />
         </InputRightElement>
       </InputGroup>
-      <div style={{ overflowY: "auto", height: 550, paddingRight: 15 }}>
+      <div style={{ overflowY: "auto", height: 600, paddingRight: 15 }}>
         <Routes setActive={setActive} setRoute={setRoute} />
       </div>
     </div>

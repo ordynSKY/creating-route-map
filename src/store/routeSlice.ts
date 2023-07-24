@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import IRoute from "../components/Routes/types";
 import { TRoutesState } from "./types";
 
 const initialState: TRoutesState = {
