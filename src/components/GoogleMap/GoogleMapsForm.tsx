@@ -92,6 +92,7 @@ const GoogleMapsForm: FC<IGoogleMapsForm> = ({ setLength, mapKey }) => {
   return (
     <div>
       <p>Click on the map to set the origin and destination.</p>
+      <br />
       <LoadScript googleMapsApiKey="AIzaSyDQdPtO_rISuddzAew90sDrepPIXj5wp1s">
         <GoogleMap
           mapContainerStyle={containerStyle}

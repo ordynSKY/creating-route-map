@@ -9,7 +9,7 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
   const searchRoute = useAppSelector((state) => state.routes.searchRoute);
 
   const searchResult = useMemo(() => {
-    const searchArray = routeArray?.filter(({ title, description }) => {
+    const searchArray = routeArray?.filter(({ title, shortDescription }) => {
       const searchTolowerCase = searchRoute.toLowerCase();
 
       const isSearchedText = searchRoute
@@ -17,7 +17,7 @@ const Routes: FC<IRoutes> = ({ setActive, setRoute }) => {
         : true;
 
       const isSearchedDescText = searchRoute
-        ? description.toLowerCase().includes(searchTolowerCase)
+        ? shortDescription.toLowerCase().includes(searchTolowerCase)
         : true;
 
       return isSearchedText || isSearchedDescText;
